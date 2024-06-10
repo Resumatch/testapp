@@ -10,9 +10,14 @@ Sub ParseSQL()
     Dim table As Variant
     Dim i As Integer
     Dim rowIndex As Integer
+    Dim cell As Range
 
-    ' Example SQL query
-    sql = "SELECT a.col1 AS alias1, b.col2 AS alias2, c.col3 AS alias3 FROM db1.table1 a JOIN db2.table2 b ON a.id = b.id JOIN db3.table3 c ON b.id = c.id"
+    ' Combine multi-line SQL query from cells A1:A5 into a single string
+    sql = ""
+    For Each cell In Worksheets("Sheet1").Range("A1:A5")
+        sql = sql & " " & cell.Value
+    Next cell
+    sql = Trim(sql) ' Remove any leading or trailing spaces
 
     ' Extract SELECT and FROM clauses
     selectClause = Trim(Mid(sql, InStr(1, sql, "SELECT ") + 7, InStr(1, sql, "FROM") - InStr(1, sql, "SELECT ") - 7))
