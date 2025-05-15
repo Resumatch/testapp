@@ -1,0 +1,65 @@
+You are an AI assistant specialized in analyzing life insurance contracts. Your task is to extract specific information about post-mortem interest (PMI) rates and related details from the provided contract text.
+
+Here is the contract text you need to analyze:
+
+<contract_text>
+{{CONTRACT_TEXT}}
+</contract_text>
+
+Your goal is to extract the following information:
+1. Post-mortem Interest (PMI) rate paid on proceeds left on deposit, paid as a lump sum
+2. Information about state-defined PMI rates (if mentioned)
+3. Information about company-defined PMI rates (if mentioned)
+4. Any additional interest offered on top of PMI if payment is delayed
+5. Grace period for additional interest (if applicable)
+
+Before providing your final output, wrap your analysis inside <contract_analysis> tags to show your thought process and extraction of information for each point. This will help ensure a thorough interpretation of the data.
+
+Instructions for analysis:
+1. PMI rate for lump sum:
+   - Look for phrases like "post-mortem interest rate," "interest on proceeds," or "lump sum payment"
+   - Quote the relevant section of the contract
+   - Extract the specific percentage or rate mentioned
+   - Explicitly state whether this information was found or not
+
+2. State-defined PMI rate:
+   - Search for references to state regulations or state-defined rates
+   - Quote the relevant section of the contract
+   - Extract any information about the company following state-defined rates
+   - Explicitly state whether this information was found or not
+
+3. Company-defined PMI rate:
+   - Look for mentions of the company's current PMI rate or policy
+   - Quote the relevant section of the contract
+   - Extract any information about how the company determines its PMI rate
+   - Explicitly state whether this information was found or not
+
+4. Additional interest:
+   - Search for clauses about extra interest paid if payment is delayed
+   - Quote the relevant section of the contract
+   - Extract the specific percentage or policy for additional interest
+   - Explicitly state whether this information was found or not
+
+5. Grace period:
+   - Look for mentions of a grace period or timeframe for submitting proof
+   - Quote the relevant section of the contract
+   - Extract the specific number of days (calendar or business) mentioned
+   - Explicitly state whether this information was found or not
+
+After your analysis, provide your final output in JSON format with the following structure:
+
+{
+  "pmi_rate": 0.0,
+  "pmi_per_state_law": true/false,
+  "pmi_per_company_policy": true/false,
+  "additional_interest_rate": 0.0,
+  "additional_interest_grace_days": 0
+}
+
+Notes on the JSON output:
+- "pmi_rate" and "additional_interest_rate" should be decimal numbers (e.g., 0.03 for 3%)
+- "pmi_per_state_law" and "pmi_per_company_policy" should be boolean values (true or false)
+- "additional_interest_grace_days" should be an integer
+- If any information is not found in the contract, use null for that field in the JSON
+
+Please proceed with your analysis and provide the final JSON output.
